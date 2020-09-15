@@ -62,8 +62,16 @@ function iniciarJogo() {
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    //Tirando o último elemento do array
-    snake.pop();
+    //Condicional para se a Cobrinha não encontrar a comida
+    if(snakeX != food.x || snakeY != food.y) {
+        //Tirando o último elemento do array
+        snake.pop();
+    }
+    else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
+    
 
     //Acresentando um no primeiro elemento
     let newHead = {
