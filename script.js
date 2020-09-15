@@ -46,7 +46,15 @@ function iniciarJogo() {
     if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0; //Se o valor da cabeça da Cobrinha, na posição X, for maior que 15 * box (sair do Canvas) e a direção for para esquerda, a cabeça receberá o valor de 0 e voltará para a esquerda
     if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
     if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if(snake[0].y < 0 && direction == "up") snake[0] = 16 * box;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+
+    //Verificando se a Cabeça da Cobrinha (posição 0) se choca com o Corpo (posição 1) para parar o Jogo
+    for(i=1; i < snake.length; i++){
+        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            clearInterval(jogo);
+            alert('Game Over');
+        }
+    }
 
     criarBG();
     criarCobrinha();
